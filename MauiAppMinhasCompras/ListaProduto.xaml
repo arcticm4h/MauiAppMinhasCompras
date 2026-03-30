@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppMinhasCompras.Views.ListaProduto"
+             Title="Produtos">
+
+  <!--
+    Corrige MAUIX2006:
+    - Não coloque atributos no property element ContentPage.ToolbarItems.
+    - Atributos como Spacing ou Path serão ignorados quando aplicados aqui.
+    - Mova atributos para os elementos ToolbarItem ou use propriedades apropriadas (ex.: IconImageSource).
+  -->
+  <ContentPage.ToolbarItems>
+    <!-- Exemplo correto: defina Text, IconImageSource, Command, Order, Priority no ToolbarItem -->
+    <ToolbarItem Text="Novo"
+                 IconImageSource="add.png"
+                 Order="Primary"
+                 Priority="0"
+                 Command="{Binding NovoProdutoCommand}" />
+    <ToolbarItem Text="Pesquisar"
+                 IconImageSource="search.png"
+                 Order="Secondary"
+                 Priority="1"
+                 Command="{Binding PesquisarCommand}" />
+  </ContentPage.ToolbarItems>
+
+  <StackLayout Padding="20">
+    <!--
+      Corrige MAUIG1001 / Token inválido:
+      - Não deixe caracteres '<' soltos no XAML. Se precisar exibir '<' ou '>', escape com &lt; e &gt;.
+      - Verifique também por trechos de texto soltos fora de elementos (causam "Token inválido 'Text' no nível raiz").
+    -->
+    <Label Text="Lista de produtos" FontSize="24" />
+    <!-- Exemplo de texto contendo '<' escapado -->
+    <!-- <Label Text="Exemplo: &lt;Novo&gt;" /> -->
+
+    <!-- Resto do conteúdo da página -->
+  </StackLayout>
+</ContentPage>
