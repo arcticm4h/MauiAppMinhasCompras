@@ -5,7 +5,7 @@ namespace MauiAppMinhasCompras
 {
     public partial class App : Application
     {
-        static SQLiteDataBaseHelper _db;
+        static SQLiteDataBaseHelper? _db;
 
         public static SQLiteDataBaseHelper Db
         { 
@@ -28,8 +28,11 @@ namespace MauiAppMinhasCompras
         public App()
         {
             InitializeComponent();
-            
-            MainPage = new NavigationPage(new Views.ListaProduto());
+        }
+
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            return new Window(new NavigationPage(new Views.ListaProduto()));
         }
 
     }//Fecha class

@@ -4,12 +4,47 @@
              x:Class="MauiAppMinhasCompras.Views.ListaProduto"
              Title="Minhas Compras">
 
-    <ContentPage.ToolbarItems> 
-        <ToolbarItem Text="Somar" />
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Somar" Clicked="Somar_Clicked" />
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
 
-    <VerticalStackLayout>
-        
+    <VerticalStackLayout Padding="20" Spacing="12">
+        <Label Text="Lista de produtos" FontSize="24" />
+
+        <SearchBar x:Name="txt_busca"
+                   Placeholder="Buscar produto"
+                   TextChanged="SearchBar_TextChanged" />
+
+        <Label x:Name="lbl_total"
+               Text="Total: R$ 0,00"
+               FontAttributes="Bold" />
+
+        <CollectionView x:Name="collection_produtos"
+                        ItemsSource="{Binding Produtos}"
+                        EmptyView="Nenhum produto cadastrado.">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="0,8"
+                          ColumnDefinitions="*,Auto"
+                          RowDefinitions="Auto,Auto">
+                        <Label Grid.Column="0"
+                               Text="{Binding Descricao}"
+                               FontAttributes="Bold" />
+
+                        <Label Grid.Column="1"
+                               Text="{Binding Quantidade, StringFormat='Qtd: {0}'}" />
+
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               Text="{Binding Preco, StringFormat='Unitario: R$ {0:F2}'}" />
+
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding Total, StringFormat='Total: R$ {0:F2}'}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>
